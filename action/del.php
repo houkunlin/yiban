@@ -40,6 +40,9 @@
 					if(file_exists('../cookie/'.md5($del).'.cookie')){
 						unlink('../cookie/'.md5($del).'.cookie');
 					}
+					if(file_exists('../cookie/'.md5($del).'.cookie2')){
+						unlink('../cookie/'.md5($del).'.cookie2');
+					}
 				}else{
 					$ybusertxt=$del;
 					$go='admin_yiban_more.php?user='.$del;

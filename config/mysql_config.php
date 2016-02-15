@@ -1,7 +1,7 @@
 <?
-$mysql_host="127.0.0.1";
+$mysql_host="localhost";
 $mysql_user="root";
-$mysql_pass="root";
+$mysql_pass="";
 $mysql_db="yiban";
 $mysqli=new mysqli($mysql_host,$mysql_user,$mysql_pass,$mysql_db);
 if(mysqli_connect_error()){

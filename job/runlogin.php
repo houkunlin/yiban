@@ -20,10 +20,10 @@
 							$m="lastruntime='".time()."',state='1'";
 							$nick=$json['data']['user']['nick'];
 							// echo $nick;
-							$m=($nick==$row2['nick']?'':",nick='{$nick}'");
+							$m.=($nick==$row2['nick']?'':",nick='{$nick}'");
 							// echo $row2['id'];
 							$sql="UPDATE `ybuser` SET {$m} where id='{$row2['id']}'";
-							$re2=$mysqli->query($sql);
+							$re2=$mysqli->query($sql);;
 							echo __LINE__.'.';
 						}else{//登录状态失效的
 							echo __LINE__.'.';

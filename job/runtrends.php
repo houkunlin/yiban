@@ -22,7 +22,7 @@
 							if(is_array($re) && $re['code']==200 && array_key_exists('id',$re['data'])){//发布动态成功
 								$m="lasttrendstime='".time()."',state='1'";
 								$nick=$json['data']['user']['nick'];
-								$m=$nick==$row2['nick']?'':",nick='{$nick}'";
+								$m.=$nick==$row2['nick']?'':",nick='{$nick}'";
 								$sql="UPDATE `ybuser` SET {$m} where id='{$row2['id']}'";
 								$re2=$mysqli->query($sql);
 								echo __LINE__.'.';

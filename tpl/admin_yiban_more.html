@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>易班帐号详情设置</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/styles.css" rel="stylesheet">
+	<link href="../css/admin_yiban_more.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">易班挂机</a>
+          <a class="navbar-brand" href="user.php">用户中心</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="add_yiban.php">添加易班帐号</a></li>
+            <li><a href="admin_yiban.php">管理易班帐号</a></li>
+            <li><a href="../">关于</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<a href="admin_yiban.php" class="pull-left hklbq">返回</a>
+			易班账户：<span class="hklbq">{ybuser}</span>
+		  </div>
+		  <div class="panel-body">
+			<ul class="nav nav-tabs" id="myTab">
+			  <li class="active"><a href="#basic" data-toggle="tab">基本</a></li>
+			  <li><a href="#login-setting" data-toggle="tab">登录</a></li>
+			  <li><a href="#trends" data-toggle="tab">动态</a></li>
+			  <li><a href="#blog" data-toggle="tab">博文</a></li>
+			  <li><a href="#dayin" data-toggle="tab">签到</a></li>
+			  <li><a href="del.php?del={ybuser}">删除此易班帐号</a></li>
+			</ul>
+
+			<div class="tab-content text-left"> 			 
+			  <div class="tab-pane fade in active" id="basic">
+				<div class="panel panel-primary">
+				  <div class="panel-heading">易班帐号基本信息</div>
+				  
+					  <ul class="list-group panel-body clearmp">
+						  <li class="list-group-item">ID：<span class="hklbq">{ybid}</span></li>
+						  <li class="list-group-item">昵称：<span class="hklbq">{ybnick}</span></li>
+						  <li class="list-group-item">主页：<a href="http://www.yiban.cn/user/index/index/user_id/{ybid}" target="_blank"><span class="hklbq">点击查看{ybnick}主页</span></a></li>
+						  <li class="list-group-item">头像：<a href="http://img02.fs.yiban.cn/{ybid}/avatar/user/200" target="_blank"><span class="hklbq">查看{ybnick}头像</span></a></li>
+						  <li class="list-group-item">运行时间：<span class="hklbq">{runtime1}点到{runtime2}点</span></li>
+					  </ul>
+				  
+				  
+				
+				</div>
+					<table class="table table-bordered text-center">
+					  <tr class="table-title"><td class="hklbq">项目</td><td class="hklbq">状态</td><td class="hklbq">上次运行</td></tr>
+					  <tr><td>登录</td><td>{loginState}</td><td>{loginStateTime}</td></tr>
+					  <tr><td>动态</td><td>{trendsState}</td><td>{lasttrendstime}</td></tr>
+					  <tr><td>博文</td><td>{blogState}</td><td>{lastblogtime}</td></tr>
+					  <tr><td>签到</td><td>{dayinState}</td><td>{lastdayintime}</td></tr>
+					</table>
+				
+				
+				<!--
+			 	<ul class="list-group">
+				<li class="list-group-item">易班账户：<span class="hklbq">{yiban_user}</span></li>
+				<li class="list-group-item">运行状态：<span class="hklbq">正常</span></li>
+				<li class="list-group-item">运行时间：<span class="hklbq">0点到0点</span></li>
+				<li class="list-group-item">运行间隔：<span class="hklbq">60分钟</span></li>
+				<li class="list-group-item">上次运行：<span class="hklbq">2015-12-20 17:20:00</span></li>
+				<li class="list-group-item">上次登录IP：<span class="hklbq">127.0.0.1</span></li>
+				</ul>
+				-->
+			  </div>
+			  <div class="tab-pane fade" id="login-setting">
+				<ul class="list-group">
+				  <li class="list-group-item">当前运行状态：<span class="hklbq">已{run}</span></li>
+				  <li class="list-group-item">当前运行时间：<span class="hklbq">{runtime1}点到{runtime2}点</span></li>
+				</ul>
+				<form action="settings.php?action=login&user={ybuser}" method="post" class="login2 navbar-form">
+					<div class="input-group">
+						<span class="input-group-addon">运行时间：</span>
+						<select name="time1" class="form-control" ivalue="8">
+							<option value="0">0点</option>
+							<option value="1">1点</option>
+							<option value="2">2点</option>
+							<option value="3">3点</option>
+							<option value="4">4点</option>
+							<option value="5">5点</option>
+							<option value="6">6点</option>
+							<option value="7">7点</option>
+							<option value="8">8点</option>
+							<option value="9">9点</option>
+							<option value="10">10点</option>
+							<option value="11">11点</option>
+							<option value="12">12点</option>
+							<option value="13">13点</option>
+							<option value="14">14点</option>
+							<option value="15">15点</option>
+							<option value="16">16点</option>
+							<option value="17">17点</option>
+							<option value="18">18点</option>
+							<option value="19">19点</option>
+							<option value="20">20点</option>
+							<option value="21">21点</option>
+							<option value="22">22点</option>
+							<option value="23">23点</option>
+						</select>
+						<span class="input-group-addon">到</span>
+						<select name="time2" class="form-control" ivalue="18">
+							<option value="0">0点</option>
+							<option value="1">1点</option>
+							<option value="2">2点</option>
+							<option value="3">3点</option>
+							<option value="4">4点</option>
+							<option value="5">5点</option>
+							<option value="6">6点</option>
+							<option value="7">7点</option>
+							<option value="8">8点</option>
+							<option value="9">9点</option>
+							<option value="10">10点</option>
+							<option value="11">11点</option>
+							<option value="12">12点</option>
+							<option value="13">13点</option>
+							<option value="14">14点</option>
+							<option value="15">15点</option>
+							<option value="16">16点</option>
+							<option value="17">17点</option>
+							<option value="18">18点</option>
+							<option value="19">19点</option>
+							<option value="20">20点</option>
+							<option value="21">21点</option>
+							<option value="22">22点</option>
+							<option value="23">23点</option>
+						</select>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">设置运行：</span>
+						<select name="run" class="form-control" value="0">
+							<option value="0">关闭运行</option>
+							<option value="1">开启运行</option>
+						</select>
+					</div>
+					<div>
+						<input type="submit" class="btn btn-success navbar-btn" value="设置运行信息">
+					</div>
+					<div class="panel-footer text-left">
+					注：我们会在登录前进行登录状态检测，若检测的登录状态正常，则不进行登录操作，否则系统进行登录操作。<br>
+				  </div>
+				</form>
+			  </div>
+			  <div class="tab-pane fade" id="trends">
+				<ul class="list-group">
+				  <li class="list-group-item">当前运行状态：<span class="hklbq">已{trends}</span></li>
+				</ul>
+			<form action="settings.php?action=trends&user={ybuser}" method="post" class="login2 navbar-form">
+			  <div class="input-group">
+				<span class="input-group-addon">动态信息：</span>
+				<textarea name="trendstxt" class="form-control">{trendsmsg}</textarea>
+			  </div>
+			  <div class="input-group">
+				<span class="input-group-addon">设置运行：</span>
+				<select name="trends" class="form-control" value="0">
+				<option value="0">关闭动态运行</option>
+				<option value="1">开启动态运行</option>
+				</select>
+			  </div>
+			  <div>
+				<input type="submit" name="submit" class="btn btn-success navbar-btn" value="设置动态运行信息">
+				<input type="submit" class="btn btn-success navbar-btn" value="实时发布动态">
+			  </div>
+			  <div class="panel-footer text-left">
+				注：我们为您的动态发布提供了一些功能（UBB），用中括号[]括起来的地方会被系统处理掉<br>
+				[随机]：会随机出我们一句我们收集的句子。<br>
+				[年月日]：产生发布动态当天的日期。<br>
+				[时分秒]：产生发布动态时的时间。<br>
+				[本站地址]：生成本站的网址到动态中。<br>
+			  </div>
+			</form>
+			  </div>
+			  <div class="tab-pane fade" id="blog">
+				博客
+
+			  </div>
+			  <div class="tab-pane fade" id="dayin">
+				<ul class="list-group">
+				  <li class="list-group-item">当前运行状态：<span class="hklbq">{dayinState}</span></li>
+				</ul>
+				<div class="btn-group">
+					<a href="settings.php?action=dayin&user={ybuser}&run=1" class="btn btn-success">开启签到</a>
+					<a href="settings.php?action=dayin&user={ybuser}&run=0" class="btn btn-danger">关闭签到</a>
+				</div>
+			  </div>
+			</div>
+
+<script>
+$(function () {
+	  //$('#myTab a:last').tab('show');
+	  $('#myTab a:last').tab('show');
+  });
+</script>
+
+
+
+		  </div>
+		  <div class="panel-footer text-left">
+			注：当关闭登录运行时，该帐号其他一切功能皆会停止运行。所有的功能运行时间都在登录运行时间内进行。
+		  </div>
+		</div>
+      </div>
+
+    </div><!-- /.container -->
+
+    <div id="footer">
+	  <div class="container">
+		<p class="text-muted">
+		  Copyright © 2015 <br>
+		  版权所有 挂机爱好者
+		</p>
+	  </div>
+
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

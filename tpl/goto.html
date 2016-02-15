@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	  <meta http-equiv="Refresh" content="{time}; url={go}" />
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>跳转中……目的：{address}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="../">易班挂机</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<h3 class="panel-title">等待跳转到：{address}</h3>
+		  </div>
+		  <div class="panel-body text-left">
+			<div class="alert alert-warning alert-dismissable">
+			  <strong id="sec">{time}</strong>
+			  秒后自动跳转……
+			  <br>
+			  目的地：<a href="{go}">{address}</a>
+			</div>
+			{tip}
+		  </div>
+		</div>
+      </div>
+<script>
+  var sec=document.getElementById("sec");
+//  alert(sec.innerHTML);
+  setInterval("sec2()",1000);
+  function sec2(){
+    sec.innerHTML=sec.innerHTML-1;
+  }
+</script>
+    </div><!-- /.container -->
+
+    <div id="footer">
+	  <div class="container">
+		<p class="text-muted">
+		  Copyright © 2015 <br>
+		  版权所有 挂机爱好者</p>
+	  </div>
+
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

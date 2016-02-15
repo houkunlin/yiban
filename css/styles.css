@@ -1,0 +1,96 @@
+
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+#footer {
+  height: auto;
+  background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 20px 0;
+  text-align:center;
+}
+.clearmp{
+  margin:0;
+  padding:0;
+}
+
+.marginTop{
+  margin-top:5px;
+}
+.marginBottom{
+  margin-bottom:5px;
+}
+.hklbq{
+  font-weight:bolder;
+  font-size:1.1em;
+  color:White;
+  padding:5px;
+  background:#4392E3;
+  
+  border-radius:5px;
+}
+
+form.login{
+  border:1px solid #FDF696;
+  width:80%;
+  margin:auto;
+//  border-radius:20px;
+  box-shadow:2px 2px 5px 2px #9DC6F0;
+  text-shadow:1px 1px 1px #88DDB7;
+  box-sizing:border;
+  padding:10px 10px 10px 10px;
+  text-align:center;
+}
+form.login2{
+  border:1px solid #FDF696;
+  width:100%;
+  margin:auto;
+//  border-radius:20px;
+  box-shadow:2px 2px 5px 2px #9DC6F0;
+  text-shadow:1px 1px 1px #88DDB7;
+  box-sizing:border;
+  padding:10px 10px 10px 10px;
+}
+form.login h1{
+  border-bottom:3px dashed #E442C8;
+}
+form.login div{
+  margin-bottom:10px;
+}
+#formnav{
+	width:100%;
+	list-style:none;
+	background:rgba(96,40,30,0.5);
+}
+#formnav li{
+	float:left;
+	width:50%;
+	text-align:center;
+	font-size:1.2em;
+	background:rgba(96,40,30,0.5);
+}
+#formnav li.formnavin{
+	background:rgba(200,155,64,0.5);
+}
+input{
+	display:block;
+	width:90%;
+	margin:auto;
+	height:2.0em;
+}

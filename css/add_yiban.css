@@ -1,0 +1,17 @@
+
+form.login{
+  border:1px solid #FDF696;
+  width:80%;
+  margin:auto;
+//  border-radius:20px;
+  box-shadow:2px 2px 5px 2px #9DC6F0;
+  text-shadow:1px 1px 1px #88DDB7;
+  box-sizing:border;
+  padding:10px 10px 10px 10px;
+}
+form.login h1{
+  border-bottom:3px dashed #E442C8;
+}
+form.login div{
+  margin-bottom:10px;
+}

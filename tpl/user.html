@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>用户中心</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">易班挂机</a>
+          <a class="navbar-brand" href="user.php">用户中心</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="add_yiban.php">添加易班帐号</a></li>
+            <li><a href="admin_yiban.php">管理易班帐号</a></li>
+            <li><a href="../">关于</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+			<h3 class="panel-title">用户中心：{email}</h3>
+		  </div>
+		  <div class="panel-body text-left">
+			<ul class="nav nav-tabs" id="myTab">
+			  <li{basic1}><a href="#basic" data-toggle="tab">基本信息</a></li>
+			  <li{change1}><a href="#change" data-toggle="tab">修改信息</a></li>
+			  <li{settings1}><a href="#settings" data-toggle="tab">挂机设置</a></li>
+			  <li><a href="admin_yiban.php">挂机管理</a></li>
+			</ul>
+
+			<div class="tab-content">
+			  <div class="tab-pane fade {basic2}" id="basic">
+				<ul class="list-group">
+				  <li class="list-group-item">邮箱：<span class="hklbq">{email}</span></li>
+				  <!--<li class="list-group-item">等级：<span class="hklbq">{vip}</span></li>-->
+				  <li class="list-group-item">当前挂机数：<span class="hklbq">{gj_num}</span></li>
+				  <li class="list-group-item">上次登录时间：<span class="hklbq">{last_time}</span></li>
+				  <li class="list-group-item">上次登录IP：<span class="hklbq">{last_ip}</span></li>
+				</ul>
+
+				<div class="btn-group">
+				  <a href="login.php?login=2" class="btn btn-danger">退出登录</a>
+				</div>
+		      </div>
+			  <div class="tab-pane fade {change2}" id="change">
+				<form action="?change=1" method="post" class="navbar-form login">
+				  <div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong>信息：</strong>原信息相同不作修改，为空则表示不修改该项信息！
+				  </div>
+				  {tip}
+				  <div class="input-group marginBottom">
+					<span class="input-group-addon">邮箱</span>
+					<input type="email" class="form-control" name="email" disabled="disabled" value="" placeholder="{email}">
+				  </div>
+				  <div class="input-group marginBottom">
+					<span class="input-group-addon">当前密码</span>
+					<input type="password" class="form-control" name="pass" value="" placeholder="当前密码">
+				  </div>
+				  <div class="input-group marginBottom">
+					<span class="input-group-addon">新的密码</span>
+					<input type="password" class="form-control" name="pass1" value="" placeholder="新的密码">
+				  </div>
+				  <div class="input-group marginBottom">
+					<span class="input-group-addon">确认密码</span>
+					<input type="password" class="form-control" name="pass2" value="" placeholder="确认密码">
+				  </div>
+				  <span class="help-block text-left">如需修改密码请勾选前面的框并且输入框不为空，否则不会更改密码！</span>
+				  <div class="">
+					<input type="submit" class="btn btn-default navbar-btn" value="修改信息">
+				  </div>
+				</form>
+			  </div>
+			  <div class="tab-pane fade {settings2}" id="settings">
+				
+				<div class="btn-toolbar marginTop" role="toolbar">
+				  <div class="btn-group">
+					<a href="settings.php?action=run&run=1" class="btn btn-default">一键开启挂机</a>
+					<a href="settings.php?action=run&run=0" class="btn btn-default">一键关闭挂机</a>
+				  </div>
+				  <div class="btn-group">
+					<a href="del.php?del=all" class="btn btn-default">清空挂机</a>
+				  </div>
+				  <div class="btn-group">
+					<a href="add_yiban.php" class="btn btn-default">添加挂机</a>
+				  </div>
+				</div>
+				
+				
+			  </div>
+			</div>
+
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+		  </div>
+		</div>
+      </div>
+
+    </div><!-- /.container -->
+
+    <div id="footer">
+	  <div class="container">
+		<p class="text-muted">
+		  Copyright © 2015 <br>
+		  版权所有 挂机爱好者</p>
+	  </div>
+
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/jquery-1.7.2.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

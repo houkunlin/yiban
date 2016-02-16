@@ -34,7 +34,7 @@
 						if(is_array($json) && $json['code']==200 && array_key_exists('isLogin',$json['data']) && $json['data']['isLogin']==1){
 							$re=$YIBAN->trends($ybuser,$trendsmsg);
 							if(is_array($re) && $re['code']==200 && array_key_exists('id',$re['data'])){
-								$tip=$Tip->warn('动态发布成功，动态内容：'.$trendsmsg);
+								$tip=$Tip->warn('动态发布成功，以下是本次动态内容：<br><br>'.$trendsmsg);
 								writeLog('['.date("Y-m-d H:i:s").']:用户['.hideStar($row['email']).']的易班帐号['.hideStar($ybuser).']实时发布了一条动态');
 							}else{
 								$tip=$Tip->warn('很抱歉，实时发布动态失败！<br>原因：登录状态正常，服务器返回数据未知！<br><br>你可以多次尝试，若多次尝试发布仍出现此问题请联系网站管理员！');

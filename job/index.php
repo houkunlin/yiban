@@ -4,10 +4,20 @@
 	date_default_timezone_set('PRC');
 
 	@header("content-Type: text/html; charset=utf-8");
+echo 'sleep1:'.microtime();
 
+$s=pow(2,mt_rand(1,7));
+$sl=$s*10000;
+usleep($sl);
+
+echo '<br>sleep2:'.microtime();
+echo '<br>sleeptime:'.$sl;
+echo '<br>';
 	$upd1=time();
 	@$upd2=file_get_contents('runtime.txt');
 	$upday=round(($upd1-$upd2)/60);
+//echo 'f:'.$upd2;
+//echo 's:'.$upday;
 	@$hkl=$_GET["hkl"];
 	if($upday < 5 && $upd2 != "" && $hkl == ""){
 		echo $upday."分钟前已运行，本次不运行";
@@ -16,7 +26,7 @@
 	$fp=fopen("runtime.txt","w+");
 	fwrite($fp,time());
 	fclose($fp);
-	
+
 	@$a=dirname($_SERVER['PHP_SELF']);
 	if($a == "/" || $a == "."){$a="";}
 	$host='http://'.$_SERVER['HTTP_HOST'].$a.'/';
@@ -25,6 +35,7 @@
 	echo '<li>'.html($host.'runlogin.php').'</li>';
 	echo '<li>'.html($host.'runtrends.php').'</li>';
 	echo '<li>'.html($host.'rundayin.php').'</li>';
+	echo '<li>'.html($host.'runblog.php').'</li>';
 	// html($host.'');
 	// html($host.'');
 	echo '</ul>';

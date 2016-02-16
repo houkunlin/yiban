@@ -30,7 +30,7 @@
 				$title='登录易班挂机';
 				$file='../tpl/goto.html';
 				$go='login.php';
-				writeLog('['.date("Y-m-d H:i:s").']:用户['.hideStar($website_email).']完成注册激活');
+				writeLog('['.date("Y-m-d H:i:s").']:用户['.hideStar($sid).']完成注册激活');
 				$tip=$Tip->info('您的帐号【'.$sid.'】已经激活，正在为您跳转到登陆界面！');
 			}else{
 				$title='登录易班挂机';

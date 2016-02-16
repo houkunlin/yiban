@@ -605,7 +605,67 @@ class YBClass{
 			}
 		}
 	}
-	
+	function healthList($str='3'){//健康知识列表，传入分类id
+		$http=new http_curl();
+		$http->from="";
+		$Url="http://www.tngou.net/api/lore/list";
+		$str='page='.mt_rand(1,20).'&id='.$str;
+		$re=$http->post($Url,$str,$this->headerArray);
+		$json=empty($re[1])?0:json_decode($re[1],true);
+		return $json;
+		/*
+		
+		Array
+		(
+			[status] => 1
+			[total] => 1157
+			[tngou] => Array
+				(
+					[0] => Array
+						(
+							[count] => 6
+							[description] => 文章摘要
+							[fcount] => 0
+							[id] => 19073
+							[img] => /lore/160214/3ae599bc9487f7a31117ad8fa3cf490c.jpg
+							[keywords] => 土豆 一起 发芽 龙葵 搭配 
+							[loreclass] => 3
+							[rcount] => 0
+							[time] => 1455435477000
+							[title] => 土豆不宜与西红柿搭配：土豆会在人体的胃肠中产生大量的盐酸
+						)
+				)
+		)
+		
+		*/
+	}
+	function healthShow($str=''){//最新健康知识列表接口，传入只是列表的文章id
+		$http=new http_curl();
+		$http->from="";
+		$Url="http://www.tngou.net/api/lore/show";
+		$str='id='.$str;
+		$re=$http->post($Url,$str,$this->headerArray);
+		$json=empty($re[1])?0:json_decode($re[1],true);
+		return $json;
+		/*
+		Array
+		(
+			[count] => 7
+			[description] => 文章摘要
+			[fcount] => 0
+			[id] => 19073
+			[img] => /lore/160214/3ae599bc9487f7a31117ad8fa3cf490c.jpg
+			[keywords] => 土豆 一起 发芽 龙葵 搭配 
+			[loreclass] => 3
+			[message] => 文章内容
+			[rcount] => 0
+			[status] => 1
+			[time] => 1455435477000
+			[title] => 土豆不宜与西红柿搭配：土豆会在人体的胃肠中产生大量的盐酸
+			[url] => http://www.tngou.net/lore/show/19073
+		)
+		*/
+	}
 	
 	
 	

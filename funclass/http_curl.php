@@ -14,7 +14,7 @@ class http_curl{
     public $file="all.cookie";#默认COOKIE文件名，不加后缀，
     public $from="";
     
-    public function get($url,$header=array()) {
+    public function get($url,$header=array(),$cookie='') {
 		$result=array();
 		$ch = curl_init();
 		curl_setopt($ch,CURLOPT_HTTPHEADER,$header);//模拟头部信息
@@ -29,7 +29,8 @@ class http_curl{
 		curl_setopt($ch,CURLOPT_TIMEOUT, 10);#10秒结束
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // https请求 不验证证书和hosts
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-		curl_setopt($ch,CURLOPT_COOKIE,$this->ReadCookie($this->cookie.$this->file));//发送COOKIE信息
+		$cookie.=$this->ReadCookie($this->cookie.$this->file);
+		curl_setopt($ch,CURLOPT_COOKIE,$cookie);//发送COOKIE信息
 		// if($a != 0){
 			// if($a == 1){
 				// curl_setopt($ch,CURLOPT_NOBODY,1);//不显示内容
@@ -65,7 +66,7 @@ class http_curl{
 		return $result;
     }
 
-    public function post($url,$params,$header=array()) {
+    public function post($url,$params,$header=array(),$cookie='') {
 		$result=array();
 		$ch = curl_init();
 		curl_setopt($ch,CURLOPT_HTTPHEADER,$header);//模拟头部信息
@@ -82,7 +83,8 @@ class http_curl{
 		curl_setopt($ch,CURLOPT_TIMEOUT, 10);#10秒后结束
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // https请求 不验证证书和hosts
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-		curl_setopt($ch,CURLOPT_COOKIE,$this->ReadCookie($this->cookie.$this->file));//发送COOKIE信息
+		$cookie.=$this->ReadCookie($this->cookie.$this->file);
+		curl_setopt($ch,CURLOPT_COOKIE,$cookie);//发送COOKIE信息
 		// if($a != 0){
 			// if($a == 1){
 				// curl_setopt($ch,CURLOPT_NOBODY,1);//不显示内容

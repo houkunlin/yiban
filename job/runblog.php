@@ -6,6 +6,7 @@
 	$YIBAN=new YBClass();
 	$sql="select * from ybuser where run='1' ";
 	$re0=$mysqli->query($sql);
+	$gH=1;//运行间隔
 	if($re0){
 		if($re0->num_rows >= 1){
 			$h=date("H");
@@ -15,11 +16,12 @@
 					$now=time();
 					$upH=round(($now-$row2['lastblogtime'])/3600);//获得两个时间的间隔（小时）
 					// echo $upH;
-					if($row2['state']==1 && $row2['blog']==1 && $upH >= 1){//上次正常运行的，且开启博文功能，超过10个小时则运行一次
+					if($row2['state']==1 && $row2['blog']==1 && $upH >= $gH){//上次正常运行的，且开启博文功能，超过10个小时则运行一次
 						$json=$YIBAN->getLogin($row2['ybuser']);
 						// echo __LINE__.'.';
 						if(is_array($json) && $json['code']==200 && array_key_exists('isLogin',$json['data']) && $json['data']['isLogin']==1){//检测登录状态成功
-							$list=$YIBAN->healthList($row2['blogMsg']);
+							$fiyid=$row2['blogMsg']!=0?$row2['blogMsg']:mt_rand(1,6);
+							$list=$YIBAN->healthList($fiyid);
 							if(is_array($list) && array_key_exists('tngou',$list)){
 								$bid=$list['tngou'][mt_rand(0,19)]['id'];//获取文章id
 								$text=$YIBAN->healthShow($bid);
@@ -29,9 +31,11 @@
 										'content'=>$text['message'].'<br><br>关键词：'.$text['keywords'],
 										'ranges'=>'1',
 										'type'=>'1',
-										'token'=>''
+										'token'=>'',
+										'keywords'=>$text['keywords']
 										);
 										$re=$YIBAN->addblog($row2['ybuser'],$blog);
+										$YIBAN->VSaddblog($row2,$text);//另一个社区的博文发布
 										if(is_array($re) && $re['code']==200 && $re['data']=='ok'){//发布博文成功
 											$m="lastblogtime='".time()."',state='1'";
 											$nick=$json['data']['user']['nick'];

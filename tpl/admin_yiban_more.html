@@ -210,7 +210,37 @@
 			</form>
 			  </div>
 			  <div class="tab-pane fade" id="blog">
-				博客
+						<ul class="list-group">
+						  <li class="list-group-item">当前运行状态：<span class="hklbq">已{blog}</span></li>
+						  <li class="list-group-item">当前博文资源：<span class="hklbq">{blogmsg}</span></li>
+						</ul>
+					<form action="settings.php?action=blog&user={ybuser}" method="post" class="login2 navbar-form">
+					  <div class="input-group">
+						<span class="input-group-addon">博文资源：</span>
+						<select name="blogmsg" class="form-control" ivalue="1">
+							<option value="0">随机以下资源</option>
+							<option value="1">企业要闻</option>
+							<option value="2">医疗新闻</option>
+							<option value="3">生活贴士</option>
+							<option value="4">药品新闻</option>
+							<option value="5">食品新闻</option>
+							<option value="6">社会热点</option>
+							<option value="7">疾病快讯</option>
+						</select>
+					  </div>
+					  <div class="input-group">
+						<span class="input-group-addon">设置运行：</span>
+						<select name="blog" class="form-control" value="0">
+						<option value="0">关闭博文运行</option>
+						<option value="1">开启博文运行</option>
+						</select>
+					  </div>
+					  <div>
+						<input type="submit" name="submit" class="btn btn-success navbar-btn" value="设置博文运行信息">
+						<input type="submit" class="btn btn-success navbar-btn" value="实时发布博文">
+					  </div>
+					 
+					</form>
 
 			  </div>
 			  <div class="tab-pane fade" id="dayin">

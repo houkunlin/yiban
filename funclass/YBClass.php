@@ -677,7 +677,24 @@ class YBClass{
 		)
 		*/
 	}
-	
+	function VSaddblog($ybrow,$blog){
+		$http=new http_curl();
+		$http->from="http://vsdh.yiban.cn/blog/pub";
+		$loginUrl="http://vsdh.yiban.cn/blog/pubblog_do.php";
+		$http->file=md5($ybrow['user']).'.cookie';
+		$postStr='P_title='.urlencode(iconv('utf-8','gb2312',$blog['title'])).'&classify=0&P_tag='.urlencode(iconv('utf-8','gb2312',str_replace(' ',',',$blog['keywords']))).'&at_edit='.urlencode(iconv('utf-8','gb2312','可以用 @用户名 通知某人')).'&power=2&blog_question=&blog_answer=&iscomment=1&area=43&hid_img=&P_text='.urlencode(iconv('utf-8','gb2312',$blog['message']));
+		$header=array(
+		'Host'=>'vsdh.yiban.cn',
+		'Accept'=>'application/json, text/javascript, */*; q=0.01',
+		'Accept-Language'=>'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+		'Accept-Encoding'=>'gzip, deflate, br',
+		'Content-Type'=>'application/x-www-form-urlencoded; charset=UTF-8',
+		'X-Requested-With'=>'XMLHttpRequest',
+		'Connection'=>'keep-alive');
+		$cookie='login_username='.$ybrow['user'].'; LUN='.$ybrow['user'].'; POWER=100; OS=%D0%C2%CF%CA%CA%C2%B7%A2%B1%ED%B4%F3%D7%F7; isVip=0; UID='.$ybrow['ybid'].';AREA=43;';
+		$re=$http->post($loginUrl,$postStr,$header,$cookie);
+		// $json=json_decode($re[1],true);
+	}
 	
 	
 	

@@ -61,6 +61,9 @@
 	$body=str_replace('{run}',$row2['run']==1?'开启运行':'关闭运行',$body);
 	$body=str_replace('{trends}',$row2['trends']==1?'开启动态运行':'关闭动态运行',$body);
 	$body=str_replace('{trendsmsg}',$row2['trendsMsg'],$body);
+	$body=str_replace('{blog}',$row2['blog']==1?'开启博文运行':'关闭博文运行',$body);
+	$blogmsg=array('随机资源','企业要闻','医疗新闻','生活贴士','药品新闻','食品新闻','社会热点','疾病快讯');
+	$body=str_replace('{blogmsg}',$row2['blogMsg']==''?'资源错误':$blogmsg[$row2['blogMsg']],$body);
 	// $body=str_replace('{}',$row2[''],$body);
 	// $body=str_replace('{}',$row2[''],$body);
 	// $body=str_replace('{}',$row2[''],$body);

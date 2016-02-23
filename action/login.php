@@ -93,5 +93,6 @@
 	}
 	$body=file_get_contents('../tpl/login.html');
 	$body=str_replace('{tip}',$tip,$body);
+	$body=str_replace('{email}',isset($website_email)?$website_email:'',$body);
 	echo $body;
 ?>

@@ -591,6 +591,15 @@ class YBClass{
 		include('ubb_rand_txt.txt');
 		preg_match_all("/\[(.*)\]/iU",$str,$ubb);//获取到ubb信息
 		// print_r($ubb);
+		$bq=array(
+				'鄙视','擦汗','大笑','得意','翻白眼','哼哼','坏笑','惊恐','开心',
+				'可爱','可怜','哭','流汗','难过','亲亲','色迷迷','生气','睡觉',
+				'调皮','偷笑','挖鼻孔','委屈','疑问','晕','抓狂','哦呵呵','傲慢',
+				'尴尬','鼓掌','害羞','惊讶','骷髅','敲打','糗大了','再见','变猪',
+				'冬季','祈祷','哦也','ok','大便','大拇指','倒喝彩','顶','吻',
+				'玫瑰','拍手','衰','太阳','心','心碎','耶','月亮','v5',
+				'给力','囧','宅','丢鸡蛋','圣诞树','手套','铜钱','袜子','咸蛋超人');
+		$bq_len=count($bq);
 		foreach($ubb[1] as $key=>$value){
 			if($value=='随机'){
 				$str=str_replace($ubb[0][$key],$sj[mt_rand(0,count($sj)-1)],$str);
@@ -600,6 +609,8 @@ class YBClass{
 				$str=str_replace($ubb[0][$key],date("H:i:s"),$str);
 			}elseif($value=='本站地址'){
 				$str=str_replace($ubb[0][$key],'http://'.$_SERVER['SERVER_NAME'],$str);
+			}elseif($value=='随机表情'){
+				$str=str_replace($ubb[1][$key],$bq[mt_rand(0,$bq_len-1)],$str);
 			}elseif($value==''){
 				
 			}

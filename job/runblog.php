@@ -15,7 +15,7 @@
 					$now=time();
 					$upH=round(($now-$row2['lastblogtime'])/3600);//获得两个时间的间隔（小时）
 					// echo $upH;
-					if($row2['state']==1 && $row2['blog']==1 && $upH >= 4){//上次正常运行的，且开启博文功能，超过10个小时则运行一次
+					if($row2['state']==1 && $row2['blog']==1 && $upH >= 1){//上次正常运行的，且开启博文功能，超过10个小时则运行一次
 						$json=$YIBAN->getLogin($row2['ybuser']);
 						// echo __LINE__.'.';
 						if(is_array($json) && $json['code']==200 && array_key_exists('isLogin',$json['data']) && $json['data']['isLogin']==1){//检测登录状态成功

@@ -12,7 +12,9 @@
 			while($row2=$re0->fetch_array()){
 				// print_r($row2);
 				if( ($row2['runtime1'] <= $h && $row2['runtime2'] >= $h) || ($row2['runtime1']==$row2['runtime2'] && $row2['runtime1']==0) ){//在运行时间内的
-					if($row2['state']==1 && $row2['trends']==1){//上次正常运行的，且开启动态功能
+					$now=time();
+					$upH=round(($now-$row2['lasttrendstime'])/60);//获得两个时间的间隔（小时）
+					if($row2['state']==1 && $row2['trends']==1 && $upH >= 10){//上次正常运行的，且开启动态功能
 						$json=$YIBAN->getLogin($row2['ybuser']);
 						if(is_array($json) && $json['code']==200 && array_key_exists('isLogin',$json['data']) && $json['data']['isLogin']==1){//检测登录状态成功
 							

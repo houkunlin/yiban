@@ -29,7 +29,7 @@ class http_curl{
 		curl_setopt($ch,CURLOPT_TIMEOUT, 10);#10秒结束
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // https请求 不验证证书和hosts
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-		$cookie.=$this->ReadCookie($this->cookie.$this->file);
+		$cookie=$this->ReadCookie($this->cookie.$this->file).$cookie;
 		curl_setopt($ch,CURLOPT_COOKIE,$cookie);//发送COOKIE信息
 		// if($a != 0){
 			// if($a == 1){
@@ -83,7 +83,11 @@ class http_curl{
 		curl_setopt($ch,CURLOPT_TIMEOUT, 10);#10秒后结束
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // https请求 不验证证书和hosts
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-		$cookie.=$this->ReadCookie($this->cookie.$this->file);
+//echo "\n\npostfun1:".$cookie;
+//echo "\n\n";
+		$cookie=$this->ReadCookie($this->cookie.$this->file).$cookie;
+//echo $cookie;
+//echo "postfun2:".$cookie;
 		curl_setopt($ch,CURLOPT_COOKIE,$cookie);//发送COOKIE信息
 		// if($a != 0){
 			// if($a == 1){

@@ -681,8 +681,9 @@ class YBClass{
 		$http=new http_curl();
 		$http->from="http://vsdh.yiban.cn/blog/pub";
 		$loginUrl="http://vsdh.yiban.cn/blog/pubblog_do.php";
-		$http->file=md5($ybrow['user']).'.cookie';
-		$postStr='P_title='.urlencode(iconv('utf-8','gb2312',$blog['title'])).'&classify=0&P_tag='.urlencode(iconv('utf-8','gb2312',str_replace(' ',',',$blog['keywords']))).'&at_edit='.urlencode(iconv('utf-8','gb2312','可以用 @用户名 通知某人')).'&power=2&blog_question=&blog_answer=&iscomment=1&area=43&hid_img=&P_text='.urlencode(iconv('utf-8','gb2312',$blog['message']));
+		$http->file=md5($ybrow['ybuser']).'.cookie';
+		$postStr='P_title='.urlencode(iconv('utf-8','gb2312',$blog['title'])).'&classify=0&P_tag='.urlencode(iconv('utf-8','gb2312',str_replace(' ',',',$blog['keywords']))).'&at_edit='.urlencode(iconv('utf-8','gb2312','可以用 @用户名 通知某人')).'&power=2&blog_question=&blog_answer=&iscomment=1&area=50&hid_img=&P_text='.urlencode(iconv('utf-8','gb2312',$blog['message']));
+		// echo $postStr;
 		$header=array(
 		'Host'=>'vsdh.yiban.cn',
 		'Accept'=>'application/json, text/javascript, */*; q=0.01',
@@ -691,11 +692,34 @@ class YBClass{
 		'Content-Type'=>'application/x-www-form-urlencoded; charset=UTF-8',
 		'X-Requested-With'=>'XMLHttpRequest',
 		'Connection'=>'keep-alive');
-		$cookie='login_username='.$ybrow['user'].'; LUN='.$ybrow['user'].'; POWER=100; OS=%D0%C2%CF%CA%CA%C2%B7%A2%B1%ED%B4%F3%D7%F7; isVip=0; UID='.$ybrow['ybid'].';AREA=43;';
+		$cookie='login_username='.$ybrow['ybuser'].'; LUN='.$ybrow['ybuser'].'; POWER=100; isVip=0;timezone=-8; UID='.$ybrow['ybid'].'; AREA=50; OS=%D0%C2%CF%CA%CA%C2%B7%A2%B1%ED%B4%F3%D7%F7; ';
 		$re=$http->post($loginUrl,$postStr,$header,$cookie);
 		// $json=json_decode($re[1],true);
+		echo $re[0];
+		echo htmlspecialchars($re[1]);
 	}
 	
+	function VSweibo($ybrow,$text){
+		$http=new http_curl();
+		$http->from="http://vsdh.yiban.cn/weibo";
+		$loginUrl="http://vsdh.yiban.cn/weibo/index.php?view=ajax&action=publish";
+		$http->file=md5($ybrow['ybuser']).'.cookie';
+		$postStr='pic=0&content='.urlencode($text);
+		// echo $postStr;
+		$header=array(
+		'Host'=>'vsdh.yiban.cn',
+		'Accept'=>'application/json, text/javascript, */*; q=0.01',
+		'Accept-Language'=>'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+		'Accept-Encoding'=>'gzip, deflate, br',
+		'Content-Type'=>'application/x-www-form-urlencoded; charset=UTF-8',
+		'X-Requested-With'=>'XMLHttpRequest',
+		'Connection'=>'keep-alive');
+		$cookie='login_username='.$ybrow['ybuser'].'; LUN='.$ybrow['ybuser'].'; POWER=100; isVip=0;timezone=-8; UID='.$ybrow['ybid'].'; AREA=43; OS=%B2%E9%BF%B4%B2%A9%CE%C4;';
+		$re=$http->post($loginUrl,$postStr,$header,$cookie);
+		// $json=json_decode($re[1],true);
+		//echo $re[0];
+		//echo htmlspecialchars($re[1]);
+	}
 	
 	
 }

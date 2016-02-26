@@ -4,6 +4,7 @@
 	include("../config/mysql_config.php");
 	include('../funclass/YBClass.php');
 	$YIBAN=new YBClass();
+	$gH=30;//运行间隔
 	$sql="select * from ybuser where run='1' ";
 	$re0=$mysqli->query($sql);
 	if($re0){
@@ -14,13 +15,14 @@
 				if( ($row2['runtime1'] <= $h && $row2['runtime2'] >= $h) || ($row2['runtime1']==$row2['runtime2'] && $row2['runtime1']==0) ){//在运行时间内的
 					$now=time();
 					$upH=round(($now-$row2['lasttrendstime'])/60);//获得两个时间的间隔（小时）
-					if($row2['state']==1 && $row2['trends']==1 && $upH >= 10){//上次正常运行的，且开启动态功能
+					if($row2['state']==1 && $row2['trends']==1 && $upH >= $gH){//上次正常运行的，且开启动态功能
 						$json=$YIBAN->getLogin($row2['ybuser']);
 						if(is_array($json) && $json['code']==200 && array_key_exists('isLogin',$json['data']) && $json['data']['isLogin']==1){//检测登录状态成功
 							
 							$trendsmsg=$row2['trendsMsg'];
 							$YIBAN->UBB($trendsmsg);
 							$re=$YIBAN->trends($row2['ybuser'],$trendsmsg);
+							$YIBAN->VSweibo($row2,$trendsmsg);
 							if(is_array($re) && $re['code']==200 && array_key_exists('id',$re['data'])){//发布动态成功
 								$m="lasttrendstime='".time()."',state='1'";
 								$nick=$json['data']['user']['nick'];

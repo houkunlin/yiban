@@ -4,7 +4,7 @@
 	include("../config/mysql_config.php");
 	include('../funclass/YBClass.php');
 	$YIBAN=new YBClass();
-	$gH=30;//运行间隔
+	$gH=30*mt_rand(1,4);//运行间隔
 	$sql="select * from ybuser where run='1' ";
 	$re0=$mysqli->query($sql);
 	if($re0){

@@ -6,7 +6,7 @@
 	$YIBAN=new YBClass();
 	$sql="select * from ybuser where run='1' ";
 	$re0=$mysqli->query($sql);
-	$gH=1;//运行间隔
+	$gH=1*mt_rand(1,3);//运行间隔
 	if($re0){
 		if($re0->num_rows >= 1){
 			$h=date("H");

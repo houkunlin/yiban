@@ -36,6 +36,8 @@ echo '<br>';
 	echo '<li>'.html($host.'runtrends.php').'</li>';
 	echo '<li>'.html($host.'rundayin.php').'</li>';
 	echo '<li>'.html($host.'runblog.php').'</li>';
+	echo '<li>'.html($host.'updatefrends.php').'</li>';
+	echo '<li>'.html($host.'runZanTong.php').'</li>';
 	// html($host.'');
 	// html($host.'');
 	echo '</ul>';

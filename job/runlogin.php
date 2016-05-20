@@ -63,6 +63,12 @@
 								$sql="UPDATE `ybuser` SET {$m} where id='{$row2['id']}'";
 								$re2=$mysqli->query($sql);
 								echo __LINE__.'.';
+								if(file_exists('../cookie/'.md5($row2['ybuser']).'.cookie')){
+									unlink('../cookie/'.md5($row2['ybuser']).'.cookie');
+								}
+								if(file_exists('../cookie/'.md5($row2['ybuser']).'.cookie2')){
+									unlink('../cookie/'.md5($row2['ybuser']).'.cookie2');
+								}
 						}
 					}
 				}

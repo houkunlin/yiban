@@ -35,7 +35,7 @@
 										'keywords'=>$text['keywords']
 										);
 										$re=$YIBAN->addblog($row2['ybuser'],$blog);
-										$YIBAN->VSaddblog($row2,$text);//另一个社区的博文发布
+//										$YIBAN->VSaddblog($row2,$text);//另一个社区的博文发布
 										if(is_array($re) && $re['code']==200 && $re['data']=='ok'){//发布博文成功
 											$m="lastblogtime='".time()."',state='1'";
 											$nick=$json['data']['user']['nick'];

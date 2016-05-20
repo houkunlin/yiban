@@ -1,0 +1,4 @@
+[20-May-2016 11:27:32 PRC] PHP Warning:  mysqli::mysqli() [<a href='mysqli.mysqli'>mysqli.mysqli</a>]: [2002] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+ (trying to connect via tcp://218.83.155.190:3306) in D:\WWW\yiban\yiban\config\mysql_config.php on line 15
+[20-May-2016 11:27:32 PRC] PHP Warning:  mysqli::mysqli() [<a href='mysqli.mysqli'>mysqli.mysqli</a>]: (HY000/2002): 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+ in D:\WWW\yiban\yiban\config\mysql_config.php on line 15

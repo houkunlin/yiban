@@ -12,7 +12,7 @@
 			while($row2=$re0->fetch_array()){
 				if( ($row2['runtime1'] <= $h && $row2['runtime2'] >= $h) || ($row2['runtime1']==$row2['runtime2'] && $row2['runtime1']==0) ){//在运行时间内的
 					if($row2['state']==1 && $row2['dayin']==1){//上次正常运行的，且开启动态功能
-						if(date("Y-m-d") != date("Y-m-d",$row2['lastdayintime'])){//今天未签到
+						if(date("Y-m-d") != date("Y-m-d",$row2['lastdayintime']==''?time():$row2['lastdayintime'])){//今天未签到
 							$json=$YIBAN->getLogin($row2['ybuser']);
 							if(is_array($json) && $json['code']==200 && array_key_exists('isLogin',$json['data']) && $json['data']['isLogin']==1){//检测登录状态成功
 								$re=$YIBAN->DayIn($row2['ybuser']);
@@ -32,16 +32,24 @@
 							}else{//登录状态失效的
 								$m="lastruntime='".time()."',state='5'";
 								$sql="UPDATE `ybuser` SET {$m} where id='{$row2['id']}'";
-								$re2=$mysqli->query($sql);
+//								$re2=$mysqli->query($sql);
 								// echo __LINE__.'.';
+								if(file_exists('../cookie/'.md5($row2['ybuser']).'.cookie')){
+									unlink('../cookie/'.md5($row2['ybuser']).'.cookie');
+								}
+								if(file_exists('../cookie/'.md5($row2['ybuser']).'.cookie2')){
+									unlink('../cookie/'.md5($row2['ybuser']).'.cookie2');
+								}
 							}
 						}else{//今天已经签到
-							// echo __LINE__.'.';
+							 echo 'in'.__LINE__.'.';
 						}
 							
 					}else{//上次运行返回结果错误的，或者未开启动态功能的
-						// echo __LINE__.'.';
+						 echo __LINE__.'last error.';
 					}
+				}else{
+					echo 'no in time<br>';
 				}
 			}
 			echo 'run ok';

@@ -720,73 +720,8 @@ class YBClass{
 		//echo $re[0];
 		//echo htmlspecialchars($re[1]);
 	}
-	function getFrends($user,$page=1){
-		$http=new http_curl();
-		$http->from="http://www.yiban.cn/user/friend/list";
-		$loginUrl="http://www.yiban.cn/user/friend/list/page/".$page;
-		$http->file=md5($user).'.cookie';
-		$re=$http->get($loginUrl,$this->headerArray);
-		$html=empty($re[1])?0:$re[1];
-		$newArray=array();
-		$AllArray=array();
-		if(preg_match("/data-userid/iU", $html)){
-			preg_match_all("/data-userid=\"(.*)\"/iU",$re[1],$YBid);
-			preg_match_all("/<span class=\"name\">(.*)<\/span>/iU",$re[1],$YBname);
-			unset($YBid[0]);
-			unset($YBname[0]);
-			$newArray[]=$YBid[1];
-			$newArray[]=$YBname[1];
-//			print_r($newArray);
-			$AllArray[$page]=$newArray;
-			$page++;
-			$nre=$this->getFrends($user,$page);
-			if($nre != 'null'){
-				$AllArray[$page]=$nre[$page];
-			}
-			
-		}else{
-			return 'null';
-		}
-		
-		return $AllArray;
-	}
-	function ZanTong($user,$theid,$trendsId,$num){
-		$http=new http_curl();
-		$http->from="http://www.yiban.cn/user/index/index/user_id/".$theid;
-		$up="http://www.yiban.cn/feed/up";
-		$down="http://www.yiban.cn/feed/down";
-		$http->file=md5($user).'.cookie';
-		$postStr="id=".$trendsId;
-		switch ($num) {
-			case 0:
-				
-				break;
-			case 1:
-				$re=$http->post($up,$postStr,$this->headerArray);
-				$json=empty($re[1])?0:json_decode($re[1],true);
-				print_r($json);
-				break;
-			case 2:
-				$re=$http->post($down,$postStr,$this->headerArray);
-				$json=empty($re[1])?0:json_decode($re[1],true);
-				print_r($json);
-				break;
-			case 3:
-				$re=$http->post($up,$postStr,$this->headerArray);
-				$json=empty($re[1])?0:json_decode($re[1],true);
-				print_r($json);
-				$re=$http->post($down,$postStr,$this->headerArray);
-				$json=empty($re[1])?0:json_decode($re[1],true);
-				print_r($json);
-				break;
-			
-			default:
-				
-				break;
-		}
-				
-		return '';
-	}
+	
+	
 }
 $a=new YBClass();
 ?>
